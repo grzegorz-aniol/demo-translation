@@ -1,0 +1,40 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.3.RELEASE'
+ 		hibernateVersion = '5.2.3.Final'
+ 	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-web')
+
+	compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.4'
+    compile group: "org.hibernate", name: "hibernate-core", version: "${hibernateVersion}"
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: "${hibernateVersion}"    
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
+
+	
+	runtime('mysql:mysql-connector-java')
+	compileOnly('org.projectlombok:lombok')
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
